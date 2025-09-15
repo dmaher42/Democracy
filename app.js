@@ -270,6 +270,11 @@ function EditableList({
   placeholder
 }) {
   const [draft, setDraft] = useState("");
+  const handleAdd = () => {
+    if (!draft.trim()) return;
+    onChange([...items, draft.trim()]);
+    setDraft("");
+  };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", {
     className: "list-disc pl-5 space-y-1"
   }, items.map((t, i) => /*#__PURE__*/React.createElement("li", {
@@ -283,18 +288,24 @@ function EditableList({
     onClick: () => onChange(items.filter((_, k) => k !== i))
   }, "remove")))), /*#__PURE__*/React.createElement("div", {
     className: "mt-3 flex gap-2"
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "flex-1 rounded-xl border border-slate-300 px-3 py-2",
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "flex-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "sr-only"
+  }, "Add item"), /*#__PURE__*/React.createElement("input", {
+    className: "w-full rounded-xl border border-slate-300 px-3 py-2",
     placeholder: placeholder,
     value: draft,
-    onChange: e => setDraft(e.target.value)
-  }), /*#__PURE__*/React.createElement("button", {
-    className: "rounded-xl px-3 py-2 bg-slate-900 text-white",
-    onClick: () => {
-      if (!draft.trim()) return;
-      onChange([...items, draft.trim()]);
-      setDraft("");
+    onChange: e => setDraft(e.target.value),
+    onKeyDown: e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleAdd();
+      }
     }
+  })), /*#__PURE__*/React.createElement("button", {
+    className: "rounded-xl px-3 py-2 bg-slate-900 text-white",
+    onClick: handleAdd
   }, "Add")));
 }
 function LessonCard({
