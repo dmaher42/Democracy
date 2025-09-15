@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:js": "babel app.jsx --out-file app.js --presets @babel/preset-env,@babel/preset-react",
+    "build:js": "babel app.jsx --out-file app.js --presets @babel/preset-react",
     "build:css": "tailwindcss -i ./src/input.css -o ./styles.css --minify",
     "build": "npm run build:js && npm run build:css",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,6 @@
   "devDependencies": {
     "@babel/cli": "^7.22.9",
     "@babel/core": "^7.22.9",
-    "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.24",
