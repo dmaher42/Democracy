@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { createRoot } from "react-dom/client";
+import React, { useEffect, useMemo, useRef, useState } from "https://esm.sh/react@18";
+import { createRoot } from "https://esm.sh/react-dom@18/client";
 
 // Year 9 Civics & Citizenship — Unit Plan (Single-file React app)
 // Designed for quick editing, printing, export/import (JSON), and ACARA/SA alignment viewing.
