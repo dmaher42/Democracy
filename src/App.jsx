@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Year 9 Civics & Citizenship — Unit Plan (Single-file React app)
 // Designed for quick editing, printing, export/import (JSON), and ACARA/SA alignment viewing.
@@ -300,7 +300,10 @@ function useLocalStorage(key, initial) {
   useEffect(() => {
     try {
       localStorage.setItem(key, JSON.stringify(state));
-    } catch {}
+    } catch (error) {
+      // Handle localStorage errors silently
+      console.warn('Failed to save to localStorage:', error);
+    }
   }, [key, state]);
   return [state, setState];
 }
