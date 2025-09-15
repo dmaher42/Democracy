@@ -464,7 +464,7 @@ function Toolbar({ plan, setPlan }) {
   );
 }
 
-export default function App() {
+function App() {
   const [plan, setPlan] = useLocalStorage("yr9-civics-plan", DEFAULT_PLAN);
   const [tab, setTab] = useState("Overview");
   const [editMeta, setEditMeta] = useState(false);

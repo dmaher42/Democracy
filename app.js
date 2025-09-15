@@ -385,7 +385,7 @@ function Toolbar({
     onChange: e => e.target.files?.[0] && importJSON(e.target.files[0])
   }));
 }
-export default function App() {
+function App() {
   const [plan, setPlan] = useLocalStorage("yr9-civics-plan", DEFAULT_PLAN);
   const [tab, setTab] = useState("Overview");
   const [editMeta, setEditMeta] = useState(false);
