@@ -329,7 +329,10 @@ function Badge({ children }) {
 
 function PillToggle({ options, value, onChange }) {
   return (
-    <div className="inline-flex rounded-2xl border border-slate-300 bg-slate-100 p-1">
+    <div
+      className="inline-flex rounded-2xl border border-slate-300 bg-slate-100 p-1"
+      role="group"
+    >
       {options.map((opt) => (
         <button
           key={opt}
@@ -338,6 +341,8 @@ function PillToggle({ options, value, onChange }) {
             value === opt ? "bg-white shadow font-semibold" : "text-slate-600"
           )}
           onClick={() => onChange(opt)}
+          aria-pressed={value === opt}
+          aria-label={opt}
         >
           {opt}
         </button>
