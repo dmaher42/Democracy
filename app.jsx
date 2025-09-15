@@ -438,7 +438,7 @@ function Toolbar({ plan, setPlan }) {
     a.href = url;
     a.download = `${plan.meta.title.replace(/[^a-z0-9]+/gi, "-")}.json`;
     a.click();
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const importJSON = (file) => {
