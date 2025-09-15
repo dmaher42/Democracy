@@ -257,11 +257,14 @@ function PillToggle({
   onChange
 }) {
   return /*#__PURE__*/React.createElement("div", {
-    className: "inline-flex rounded-2xl border border-slate-300 bg-slate-100 p-1"
+    className: "inline-flex rounded-2xl border border-slate-300 bg-slate-100 p-1",
+    role: "group"
   }, options.map(opt => /*#__PURE__*/React.createElement("button", {
     key: opt,
     className: classNames("px-3 py-1.5 text-sm rounded-xl", value === opt ? "bg-white shadow font-semibold" : "text-slate-600"),
-    onClick: () => onChange(opt)
+    onClick: () => onChange(opt),
+    "aria-pressed": value === opt,
+    "aria-label": opt
   }, opt)));
 }
 function EditableList({
