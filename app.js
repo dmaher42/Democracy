@@ -206,7 +206,167 @@ const DEFAULT_PLAN = {
   }],
   differentiation: ["Choice boards for product (infographic, short video, Minecraft build of a 'healthy democracy' city district, podcast).", "Sentence starters/frames for arguments; vocabulary banks (jurisdiction, mandate, sovereignty, precedent).", "Targeted mini-lessons for reading complex sources; text simplification options.", "Adjusted success criteria for students working at Yr 7–8 literacy levels; extension: comparative case study of another democracy."],
   pedagogy: ["Visible Learning alignment: clear intentions & success criteria displayed every lesson; frequent feedback cycles.", "Teacher-as-evaluator: exit tickets, mid-unit checks, conferencing logs to adjust teaching.", "Peer learning: protocols for discussion (Socratic, think-pair-share, jigsaw)."],
-  resources: ["PEO: Australian Constitution resources", "Federal Parliament Education Office: law-making process materials", "Local council website (civic participation examples)", "ABC Education media literacy lessons"]
+  resources: ["PEO: Australian Constitution resources", "Federal Parliament Education Office: law-making process materials", "Local council website (civic participation examples)", "ABC Education media literacy lessons"],
+  organisation: {
+    activeWeek: 1,
+    weeklyFocus: [{
+      week: 1,
+      focus: "Launch the inquiry and build trust norms.",
+      priorities: ["Set up the trust pulse display and gallery walk prompts.", "Co-design discussion norms with students and allocate inquiry teams."],
+      checkIn: "Capture baseline reflections on trust in institutions for comparison in Week 8."
+    }, {
+      week: 2,
+      focus: "Deepen understanding of the Constitution and policy pathways.",
+      priorities: ["Finalise timeline cards for the federation to referendum jigsaw.", "Curate contemporary policy examples that connect to student interests."],
+      checkIn: "Identify students who need targeted vocabulary support before the policy flowchart lesson."
+    }, {
+      week: 3,
+      focus: "Explore courts, rights and justice in action.",
+      priorities: ["Refresh the court hierarchy visuals and role cards.", "Invite the school wellbeing leader to observe the justice discussion."],
+      checkIn: "Collect exit tickets on how the court system supports democracy; note students for conferences."
+    }, {
+      week: 4,
+      focus: "Analyse media influence and identity.",
+      priorities: ["Gather diverse media texts for representation analysis.", "Prepare bias detector mini-lesson examples."],
+      checkIn: "Monitor group dynamics during source reliability clinic and schedule follow-ups."
+    }, {
+      week: 5,
+      focus: "Design the civic action project.",
+      priorities: ["Confirm stakeholder interview slots and consent requirements.", "Model a strong action blueprint using last year's exemplar."],
+      checkIn: "Check each group's consultation plan and adjust timelines for students needing more scaffolds."
+    }, {
+      week: 6,
+      focus: "Prototype, test and communicate action ideas.",
+      priorities: ["Schedule peer feedback rounds and capture warm/ cool feedback language.", "Coordinate access to tech spaces for production days."],
+      checkIn: "Track which groups need additional coaching on evaluation metrics."
+    }, {
+      week: 7,
+      focus: "Synthesize evidence into arguments.",
+      priorities: ["Update essay planning scaffolds and exemplars.", "Plan conferencing roster targeting students below benchmark."],
+      checkIn: "Collect drafting samples for moderation with the Humanities team."
+    }, {
+      week: 8,
+      focus: "Reflect, celebrate and map next steps.",
+      priorities: ["Organise reflection prompts and celebration wall.", "Capture student voice on future civic action opportunities."],
+      checkIn: "Gather evidence of growth for reporting and share success stories with leadership."
+    }],
+    keyDates: [{
+      date: "2024-05-03",
+      label: "Source reliability clinic",
+      type: "checkpoint",
+      detail: "Collect formative evidence during the bias detective workshop and log conferencing notes.",
+      window: "Week 4 double lesson"
+    }, {
+      date: "2024-05-10",
+      label: "Civic action proposal draft",
+      type: "milestone",
+      detail: "Groups share draft proposals for feedback and approval before community outreach.",
+      window: "Submit via Teams by 4pm"
+    }, {
+      date: "2024-05-17",
+      label: "Prototype feedback carousel",
+      type: "workshop",
+      detail: "Peer review cycle for campaign materials; capture warm and cool feedback.",
+      window: "Library breakout space"
+    }, {
+      date: "2024-05-24",
+      label: "Civic action presentations",
+      type: "showcase",
+      detail: "Group presentations with Q&A panel including leadership and community partner.",
+      window: "Periods 3-4"
+    }, {
+      date: "2024-05-30",
+      label: "Evidence-based argument due",
+      type: "assessment",
+      detail: "Collect final essays and update gradebook with achievement and next steps.",
+      window: "Upload to LMS by 9pm"
+    }],
+    routines: [{
+      title: "Monday planning huddle",
+      timing: "Before school",
+      checklist: ["Skim this week's learning sequence and adjust slides.", "Flag targeted conferences using last week's exit tickets."]
+    }, {
+      title: "Midweek formative pulse",
+      timing: "Wednesday lunch",
+      checklist: ["Review student work samples for quick wins and misconceptions.", "Email families of students who need encouragement or celebration."]
+    }, {
+      title: "Friday reflection & gratitude",
+      timing: "After school",
+      checklist: ["Log celebrations and challenges in professional journal.", "Schedule next week's wellbeing check-ins and send thank-you messages to collaborators."]
+    }],
+    communications: ["Families • Week 1 newsletter: share the inquiry question and invite conversations at home.", "Leadership • Week 3 briefing: flag upcoming civic action showcase and space requirements.", "Community partners • Week 5 email: confirm availability for feedback on student proposals.", "Students • Week 7 update: outline essay checkpoints and conferencing schedule."],
+    wellbeingPrompts: ["Block two 10-minute resets across busy presentation week.", "Celebrate one student voice success in each staff meeting agenda.", "Pair up with a colleague for mutual observation during Week 3 justice lessons.", "Protect one meeting-free afternoon for resource curation and reflection."]
+  },
+  tasksBoard: {
+    Backlog: [{
+      id: "task-backlog-1",
+      title: "Collect local council contact details for stakeholder list",
+      due: "Week 4",
+      category: "Communication",
+      notes: "Check last year's spreadsheet and update councillor roles."
+    }, {
+      id: "task-backlog-2",
+      title: "Draft extension pathway comparing another democracy",
+      due: "Week 5",
+      category: "Planning",
+      notes: "Use New Zealand and Canada as contrasting case studies for high flyers."
+    }],
+    Preparing: [{
+      id: "task-preparing-1",
+      title: "Prepare source reliability clinic materials",
+      due: "Apr 29",
+      category: "Planning",
+      notes: "Print CRAAP templates and load Padlet example responses."
+    }, {
+      id: "task-preparing-2",
+      title: "Update success criteria display for civic action project",
+      due: "Week 2",
+      category: "Assessment",
+      notes: "Translate rubric language into student-friendly statements."
+    }],
+    "In class": [{
+      id: "task-inclass-1",
+      title: "Conference with media literacy group on bias strategies",
+      due: "Lesson 4.2",
+      category: "Wellbeing",
+      notes: "Focus on students who flagged overwhelm during last seminar."
+    }, {
+      id: "task-inclass-2",
+      title: "Capture exit ticket data on trust shifts",
+      due: "Week 3 Friday",
+      category: "Assessment",
+      notes: "Tag students needing follow-up conversations about civic identity."
+    }],
+    Completed: [{
+      id: "task-completed-1",
+      title: "Send Week 1 family update with inquiry overview",
+      due: "Week 1 Friday",
+      category: "Communication",
+      notes: "Shared newsletter blurb and invited families to contribute local issues."
+    }]
+  },
+  meetings: [{
+    date: "2024-04-29",
+    title: "Humanities team sync",
+    focus: "Align assessment checkpoints and shared rubrics.",
+    agenda: ["Compare success criteria language across subjects.", "Plan moderation windows for persuasive writing."],
+    actions: ["Share civic action rubric draft with team by Thursday.", "Invite colleagues to co-observe Week 3 justice lesson."],
+    notes: "Common language agreed: evidence, perspective, civic impact."
+  }, {
+    date: "2024-05-08",
+    title: "Student leadership check-in",
+    focus: "Plan authentic audiences for civic action showcase.",
+    agenda: ["Brainstorm community partners and logistics.", "Identify student MCs and tech support."],
+    actions: ["Confirm hall booking with leadership.", "Email community partner shortlist for availability."],
+    notes: "Student leaders suggested inviting the youth council representative."
+  }, {
+    date: "2024-05-22",
+    title: "Community partner briefing",
+    focus: "Prepare guests for student presentations and feedback roles.",
+    agenda: ["Share success criteria and protocols with partners.", "Clarify feedback forms and timeline."],
+    actions: ["Send presentation schedule and parking information.", "Prepare thank-you packs for guests."],
+    notes: "Partners requested student work samples beforehand; upload exemplars to shared folder."
+  }]
 };
 
 // ---- Helpers ----
@@ -220,6 +380,21 @@ const TAB_ITEMS = [{
   label: "Learning Sequence",
   icon: "🗂️",
   description: "Explore each week and lesson in a fluid, scrollable storyboard."
+}, {
+  id: "Planner",
+  label: "Planning Hub",
+  icon: "🗓️",
+  description: "Coordinate weekly focus, routines, key dates and communications."
+}, {
+  id: "Tasks",
+  label: "Task Board",
+  icon: "✅",
+  description: "Track preparation, in-class moves and follow-up actions."
+}, {
+  id: "Meetings",
+  label: "Meetings",
+  icon: "🤝",
+  description: "Capture collaboration notes and turn them into next steps."
 }, {
   id: "Assessment",
   label: "Assessment",
@@ -244,12 +419,72 @@ const TAB_ITEMS = [{
 const TAB_ACCENTS = {
   Overview: "from-sky-500/80 to-cyan-400/80",
   Sequence: "from-violet-500/80 to-fuchsia-400/70",
+  Planner: "from-indigo-500/80 to-sky-400/70",
+  Tasks: "from-emerald-500/80 to-teal-400/70",
+  Meetings: "from-orange-500/80 to-rose-400/70",
   Assessment: "from-amber-500/80 to-orange-400/70",
   Curriculum: "from-emerald-500/80 to-lime-400/70",
   Differentiation: "from-rose-500/80 to-orange-400/70",
   Resources: "from-blue-500/80 to-indigo-400/70"
 };
 const classNames = (...c) => c.filter(Boolean).join(" ");
+const formatDate = (dateStr, options = {
+  month: "short",
+  day: "numeric"
+}) => {
+  if (!dateStr) return "";
+  const date = new Date(dateStr);
+  if (Number.isNaN(date.getTime())) {
+    return dateStr;
+  }
+  try {
+    return date.toLocaleDateString(undefined, options);
+  } catch (error) {
+    return dateStr;
+  }
+};
+const formatDateWithWeekday = dateStr => formatDate(dateStr, {
+  weekday: "short",
+  month: "short",
+  day: "numeric"
+});
+const generateId = () => {
+  if (typeof window !== "undefined" && window.crypto?.randomUUID) {
+    return window.crypto.randomUUID();
+  }
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+};
+const TASK_STAGES = ["Backlog", "Preparing", "In class", "Completed"];
+const TASK_STAGE_META = {
+  Backlog: {
+    accent: "from-slate-600/40 to-slate-500/20",
+    subtitle: "Ideas parked for later or future iterations."
+  },
+  Preparing: {
+    accent: "from-sky-600/40 to-cyan-500/20",
+    subtitle: "Resources, logistics and prep that need attention."
+  },
+  "In class": {
+    accent: "from-violet-600/40 to-fuchsia-500/20",
+    subtitle: "Moves happening during lessons to monitor and note."
+  },
+  Completed: {
+    accent: "from-emerald-600/40 to-lime-500/20",
+    subtitle: "Wins to celebrate and archive."
+  }
+};
+const TASK_CATEGORIES = ["Planning", "Assessment", "Communication", "Wellbeing"];
+const KEY_DATE_ICONS = {
+  checkpoint: "⏱️",
+  milestone: "🎯",
+  workshop: "🛠️",
+  showcase: "🎤",
+  assessment: "📝",
+  community: "🤝"
+};
 function useLocalStorage(key, initial) {
   const [state, setState] = useState(() => {
     try {
@@ -430,6 +665,316 @@ function WeekBlock({
     lesson: lesson
   })))));
 }
+function WeeklyFocusCard({
+  focus,
+  isActive,
+  onSelectActive
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: classNames("relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-5 transition", isActive ? "border-sky-400/60 bg-sky-500/10 shadow-[0_28px_80px_rgba(56,189,248,0.35)]" : "hover:border-sky-400/40 hover:bg-sky-500/10")
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "relative space-y-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between gap-3"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, "Week ", focus.week), /*#__PURE__*/React.createElement("div", {
+    className: "mt-1 text-base font-semibold text-white"
+  }, focus.focus)), isActive ? /*#__PURE__*/React.createElement(Badge, null, "Active week") : /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    onClick: onSelectActive,
+    className: "rounded-full border border-white/20 bg-white/0 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-200 transition hover:border-sky-400/60 hover:bg-sky-500/10 hover:text-white"
+  }, "Set active")), focus.priorities?.length ? /*#__PURE__*/React.createElement("div", {
+    className: "space-y-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, "Priorities"), /*#__PURE__*/React.createElement("ul", {
+    className: "list-disc space-y-1 pl-5 text-sm leading-6 text-slate-100/80"
+  }, focus.priorities.map((item, index) => /*#__PURE__*/React.createElement("li", {
+    key: index
+  }, item)))) : null, focus.checkIn ? /*#__PURE__*/React.createElement("div", {
+    className: "rounded-2xl border border-sky-400/40 bg-sky-500/10 px-4 py-3"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-sky-200/80"
+  }, "Check-in"), /*#__PURE__*/React.createElement("p", {
+    className: "mt-1 text-sm leading-6 text-slate-100/90"
+  }, focus.checkIn)) : null));
+}
+function KeyDateTimeline({
+  items
+}) {
+  if (!items?.length) {
+    return /*#__PURE__*/React.createElement("p", {
+      className: "rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-300/80"
+    }, "No key dates recorded yet. Add milestones to keep the schedule visible.");
+  }
+  const sorted = [...items].sort((a, b) => {
+    const aDate = new Date(a.date);
+    const bDate = new Date(b.date);
+    if (Number.isNaN(aDate.getTime()) || Number.isNaN(bDate.getTime())) {
+      return 0;
+    }
+    return aDate - bDate;
+  });
+  return /*#__PURE__*/React.createElement("ul", {
+    className: "space-y-4"
+  }, sorted.map(item => {
+    const icon = KEY_DATE_ICONS[item.type] || "📌";
+    return /*#__PURE__*/React.createElement("li", {
+      key: `${item.date}-${item.label}`,
+      className: "relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-4"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "flex items-start justify-between gap-3"
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+    }, formatDateWithWeekday(item.date) || "Schedule"), /*#__PURE__*/React.createElement("div", {
+      className: "mt-1 text-base font-semibold text-white"
+    }, item.label)), /*#__PURE__*/React.createElement("span", {
+      className: "flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-sky-500/20 to-cyan-500/20 text-lg"
+    }, icon)), item.detail ? /*#__PURE__*/React.createElement("p", {
+      className: "mt-3 text-sm leading-6 text-slate-100/80"
+    }, item.detail) : null, item.window ? /*#__PURE__*/React.createElement("div", {
+      className: "mt-2 text-xs font-semibold uppercase tracking-wide text-slate-300/70"
+    }, "Window: ", item.window) : null);
+  }));
+}
+function RoutineCard({
+  routine
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "rounded-3xl border border-white/10 bg-white/5 p-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between gap-3"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "text-sm font-semibold text-white"
+  }, routine.title), /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, routine.timing))), routine.checklist?.length ? /*#__PURE__*/React.createElement("ul", {
+    className: "mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-100/80"
+  }, routine.checklist.map((item, index) => /*#__PURE__*/React.createElement("li", {
+    key: index
+  }, item))) : null);
+}
+function TaskCard({
+  task,
+  previousStatus,
+  nextStatus,
+  onMovePrev,
+  onMoveNext,
+  onDelete
+}) {
+  const actionButton = "rounded-full border border-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-200 transition hover:border-sky-400/60 hover:text-white";
+  return /*#__PURE__*/React.createElement("div", {
+    className: "rounded-2xl border border-white/10 bg-slate-950/40 p-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap items-start justify-between gap-3"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-sm font-semibold text-white"
+  }, task.title), task.category ? /*#__PURE__*/React.createElement(Badge, null, task.category) : null), task.due ? /*#__PURE__*/React.createElement("span", {
+    className: "rounded-full border border-sky-400/40 bg-sky-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sky-100"
+  }, "Due: ", task.due) : null), task.notes ? /*#__PURE__*/React.createElement("p", {
+    className: "mt-3 text-sm leading-6 text-slate-100/80"
+  }, task.notes) : null, /*#__PURE__*/React.createElement("div", {
+    className: "mt-3 flex flex-wrap gap-2"
+  }, previousStatus ? /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: actionButton,
+    onClick: onMovePrev
+  }, "\u2190 ", previousStatus) : null, nextStatus ? /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: actionButton,
+    onClick: onMoveNext
+  }, nextStatus, " \u2192") : null, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "rounded-full border border-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-rose-200 transition hover:border-rose-300/60 hover:bg-rose-500/10",
+    onClick: onDelete
+  }, "Remove")));
+}
+function TaskColumn({
+  status,
+  tasks,
+  onAddTask,
+  onMoveTask,
+  onDeleteTask,
+  previousStatus,
+  nextStatus
+}) {
+  const [title, setTitle] = useState("");
+  const [due, setDue] = useState("");
+  const [category, setCategory] = useState(TASK_CATEGORIES[0]);
+  const [notes, setNotes] = useState("");
+  const meta = TASK_STAGE_META[status] || {};
+  const baseId = status.replace(/\s+/g, "-").toLowerCase();
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!title.trim()) return;
+    onAddTask(status, {
+      title: title.trim(),
+      due: due.trim(),
+      category,
+      notes: notes.trim()
+    });
+    setTitle("");
+    setDue("");
+    setNotes("");
+    setCategory(TASK_CATEGORIES[0]);
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    className: classNames("flex h-full flex-col gap-4 rounded-3xl border border-white/10 bg-gradient-to-br p-4 shadow-[0_24px_70px_rgba(15,23,42,0.55)] backdrop-blur-xl", meta.accent || "from-slate-700/40 to-slate-800/20")
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between gap-3"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "text-sm font-semibold text-white"
+  }, status), meta.subtitle ? /*#__PURE__*/React.createElement("div", {
+    className: "mt-1 text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, meta.subtitle) : null), /*#__PURE__*/React.createElement(Badge, null, tasks.length, " ", tasks.length === 1 ? "task" : "tasks")), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-3"
+  }, tasks.map(task => /*#__PURE__*/React.createElement(TaskCard, {
+    key: task.id,
+    task: task,
+    previousStatus: previousStatus,
+    nextStatus: nextStatus,
+    onMovePrev: previousStatus ? () => onMoveTask(status, previousStatus, task.id) : undefined,
+    onMoveNext: nextStatus ? () => onMoveTask(status, nextStatus, task.id) : undefined,
+    onDelete: () => onDeleteTask(status, task.id)
+  })), tasks.length === 0 ? /*#__PURE__*/React.createElement("p", {
+    className: "rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-300/80"
+  }, "No tasks in this lane yet.") : null), /*#__PURE__*/React.createElement("form", {
+    className: "mt-auto space-y-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4",
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "space-y-2"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "sr-only",
+    htmlFor: `${baseId}-title`
+  }, "Task title"), /*#__PURE__*/React.createElement("input", {
+    id: `${baseId}-title`,
+    className: "w-full rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 focus:border-sky-200/60 focus:outline-none focus:ring-2 focus:ring-sky-300/60",
+    placeholder: "Add a task title\u2026",
+    value: title,
+    onChange: e => setTitle(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "grid gap-2 sm:grid-cols-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "space-y-2"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "sr-only",
+    htmlFor: `${baseId}-due`
+  }, "Due"), /*#__PURE__*/React.createElement("input", {
+    id: `${baseId}-due`,
+    className: "w-full rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 focus:border-sky-200/60 focus:outline-none focus:ring-2 focus:ring-sky-300/60",
+    placeholder: "Due / week",
+    value: due,
+    onChange: e => setDue(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-2"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "sr-only",
+    htmlFor: `${baseId}-category`
+  }, "Category"), /*#__PURE__*/React.createElement("select", {
+    id: `${baseId}-category`,
+    className: "w-full rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white focus:border-sky-200/60 focus:outline-none focus:ring-2 focus:ring-sky-300/60",
+    value: category,
+    onChange: e => setCategory(e.target.value)
+  }, TASK_CATEGORIES.map(cat => /*#__PURE__*/React.createElement("option", {
+    key: cat,
+    value: cat
+  }, cat))))), /*#__PURE__*/React.createElement("label", {
+    className: "sr-only",
+    htmlFor: `${baseId}-notes`
+  }, "Notes"), /*#__PURE__*/React.createElement("textarea", {
+    id: `${baseId}-notes`,
+    className: "w-full rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 focus:border-sky-200/60 focus:outline-none focus:ring-2 focus:ring-sky-300/60",
+    placeholder: "Notes or reminders (optional)",
+    rows: 3,
+    value: notes,
+    onChange: e => setNotes(e.target.value)
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: "w-full rounded-2xl bg-gradient-to-r from-sky-500 to-cyan-400 px-4 py-2 text-sm font-semibold text-slate-900 shadow-lg shadow-sky-500/30 transition hover:from-sky-400 hover:to-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-200"
+  }, "Add task")));
+}
+function TaskBoard({
+  board,
+  onAddTask,
+  onMoveTask,
+  onDeleteTask
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+  }, TASK_STAGES.map((status, index) => /*#__PURE__*/React.createElement(TaskColumn, {
+    key: status,
+    status: status,
+    tasks: board?.[status] || [],
+    previousStatus: index > 0 ? TASK_STAGES[index - 1] : undefined,
+    nextStatus: index < TASK_STAGES.length - 1 ? TASK_STAGES[index + 1] : undefined,
+    onAddTask: onAddTask,
+    onMoveTask: onMoveTask,
+    onDeleteTask: onDeleteTask
+  })));
+}
+function MeetingCard({
+  meeting,
+  index,
+  onUpdateActions
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "rounded-3xl border border-white/10 bg-white/5 p-5"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap items-start justify-between gap-3"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "space-y-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, formatDateWithWeekday(meeting.date) || "Meeting"), /*#__PURE__*/React.createElement("div", {
+    className: "text-base font-semibold text-white"
+  }, meeting.title), meeting.focus ? /*#__PURE__*/React.createElement("p", {
+    className: "text-sm leading-6 text-slate-100/80"
+  }, meeting.focus) : null), /*#__PURE__*/React.createElement(Badge, null, meeting.actions?.length || 0, " actions")), meeting.agenda?.length ? /*#__PURE__*/React.createElement("div", {
+    className: "mt-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, "Agenda"), /*#__PURE__*/React.createElement("ul", {
+    className: "mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-100/80"
+  }, meeting.agenda.map((item, itemIndex) => /*#__PURE__*/React.createElement("li", {
+    key: itemIndex
+  }, item)))) : null, /*#__PURE__*/React.createElement("div", {
+    className: "mt-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, "Action items"), /*#__PURE__*/React.createElement(EditableList, {
+    items: meeting.actions || [],
+    onChange: value => onUpdateActions(index, value),
+    placeholder: "Add a follow-up step\u2026"
+  })), meeting.notes ? /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, "Notes"), /*#__PURE__*/React.createElement("p", {
+    className: "mt-1 text-sm leading-6 text-slate-100/80"
+  }, meeting.notes)) : null);
+}
+function ActionSummary({
+  items
+}) {
+  if (!items?.length) {
+    return /*#__PURE__*/React.createElement("p", {
+      className: "rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-300/80"
+    }, "No follow-up actions recorded yet. Capture meeting actions to build momentum.");
+  }
+  return /*#__PURE__*/React.createElement("ul", {
+    className: "space-y-3"
+  }, items.map((item, index) => /*#__PURE__*/React.createElement("li", {
+    key: `${item.meeting}-${index}`,
+    className: "rounded-2xl border border-white/10 bg-white/5 px-4 py-3"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-sm font-semibold text-white"
+  }, item.action), /*#__PURE__*/React.createElement("div", {
+    className: "mt-1 text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, "From: ", item.meeting))));
+}
 function Toolbar({
   plan,
   setPlan
@@ -529,8 +1074,47 @@ function PlanHero({
   editMeta,
   setEditMeta,
   onCurriculumChange,
-  setPlan
+  setPlan,
+  onActiveWeekChange
 }) {
+  const organisation = plan.organisation || {};
+  const weeklyFocus = organisation.weeklyFocus || [];
+  const activeWeek = organisation.activeWeek ?? weeklyFocus[0]?.week ?? plan.sequence?.[0]?.week ?? 1;
+  const activeFocus = weeklyFocus.find(f => f.week === activeWeek) || weeklyFocus[0];
+  const handleActiveWeekChange = value => {
+    const numericValue = typeof value === "number" ? value : parseInt(value, 10);
+    const nextValue = Number.isNaN(numericValue) ? value : numericValue;
+    if (typeof onActiveWeekChange === "function") {
+      onActiveWeekChange(nextValue);
+    } else if (setPlan) {
+      setPlan(prev => ({
+        ...prev,
+        organisation: {
+          ...(prev.organisation || {}),
+          activeWeek: nextValue
+        }
+      }));
+    }
+  };
+  const upcomingMilestone = useMemo(() => {
+    const keyDates = organisation.keyDates || [];
+    if (!keyDates.length) return null;
+    const sorted = [...keyDates].sort((a, b) => {
+      const aDate = new Date(a.date);
+      const bDate = new Date(b.date);
+      if (Number.isNaN(aDate.getTime()) || Number.isNaN(bDate.getTime())) {
+        return 0;
+      }
+      return aDate - bDate;
+    });
+    const now = new Date();
+    const upcoming = sorted.find(item => {
+      const date = new Date(item.date);
+      return !Number.isNaN(date.getTime()) && date >= now;
+    });
+    return upcoming || sorted[sorted.length - 1];
+  }, [organisation.keyDates]);
+  const milestoneIcon = upcomingMilestone ? KEY_DATE_ICONS[upcomingMilestone.type] || "📌" : "📌";
   return /*#__PURE__*/React.createElement("div", {
     className: "relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-sky-500/20 via-slate-900/60 to-slate-950/80 p-7 shadow-[0_30px_80px_rgba(2,6,23,0.6)] backdrop-blur-xl"
   }, /*#__PURE__*/React.createElement("div", {
@@ -569,6 +1153,8 @@ function PlanHero({
     className: "absolute inset-0 -z-10 opacity-0 transition group-hover:opacity-100 bg-gradient-to-r from-white/10 to-transparent",
     "aria-hidden": "true"
   }))), /*#__PURE__*/React.createElement("div", {
+    className: "grid gap-4 lg:grid-cols-[1.2fr,0.8fr]"
+  }, /*#__PURE__*/React.createElement("div", {
     className: "grid gap-4 sm:grid-cols-2"
   }, /*#__PURE__*/React.createElement(MetaField, {
     label: "Duration",
@@ -592,6 +1178,69 @@ function PlanHero({
     onChange: val => onMetaChange("lastUpdated", val),
     type: "date"
   })), /*#__PURE__*/React.createElement("div", {
+    className: "grid gap-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "rounded-3xl border border-white/10 bg-white/5 p-5 shadow-inner shadow-slate-950/30"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between gap-3"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, "Upcoming milestone"), upcomingMilestone ? /*#__PURE__*/React.createElement("div", {
+    className: "mt-1 space-y-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-sm text-slate-100/80"
+  }, formatDateWithWeekday(upcomingMilestone.date) || "Schedule"), /*#__PURE__*/React.createElement("div", {
+    className: "text-base font-semibold text-white"
+  }, upcomingMilestone.label)) : /*#__PURE__*/React.createElement("p", {
+    className: "mt-2 text-sm leading-6 text-slate-100/70"
+  }, "Add a key date to surface your next checkpoint.")), /*#__PURE__*/React.createElement("span", {
+    className: "flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-sky-500/20 to-cyan-500/20 text-xl"
+  }, milestoneIcon)), upcomingMilestone?.detail ? /*#__PURE__*/React.createElement("p", {
+    className: "mt-3 text-sm leading-6 text-slate-100/80"
+  }, upcomingMilestone.detail) : null, upcomingMilestone?.window ? /*#__PURE__*/React.createElement("div", {
+    className: "mt-3 text-xs font-semibold uppercase tracking-wide text-slate-300/70"
+  }, "Window: ", upcomingMilestone.window) : null), /*#__PURE__*/React.createElement("div", {
+    className: "rounded-3xl border border-white/10 bg-white/5 p-5 shadow-inner shadow-slate-950/30"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap items-start justify-between gap-3"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, "Active week focus"), activeFocus ? /*#__PURE__*/React.createElement("div", {
+    className: "mt-1 space-y-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-sm text-slate-100/80"
+  }, "Week ", activeFocus.week), /*#__PURE__*/React.createElement("p", {
+    className: "text-base font-semibold text-white"
+  }, activeFocus.focus)) : /*#__PURE__*/React.createElement("p", {
+    className: "mt-2 text-sm leading-6 text-slate-100/70"
+  }, "Capture weekly focus notes to anchor your planning rhythm.")), weeklyFocus.length ? /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col items-end gap-2"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80",
+    htmlFor: "active-week-select"
+  }, "Active week"), /*#__PURE__*/React.createElement("select", {
+    id: "active-week-select",
+    className: "rounded-full border border-white/15 bg-slate-950/40 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-slate-100 focus:border-sky-300/60 focus:outline-none focus:ring-2 focus:ring-sky-300/60",
+    value: activeWeek,
+    onChange: e => handleActiveWeekChange(Number(e.target.value))
+  }, weeklyFocus.map(focus => /*#__PURE__*/React.createElement("option", {
+    key: focus.week,
+    value: focus.week
+  }, "Week ", focus.week)))) : null), activeFocus?.priorities?.length ? /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 space-y-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
+  }, "Priorities"), /*#__PURE__*/React.createElement("ul", {
+    className: "list-disc space-y-1 pl-5 text-sm leading-6 text-slate-100/80"
+  }, activeFocus.priorities.map((item, index) => /*#__PURE__*/React.createElement("li", {
+    key: index
+  }, item)))) : null, activeFocus?.checkIn ? /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 rounded-2xl border border-sky-400/40 bg-sky-500/10 px-4 py-3"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-semibold uppercase tracking-wide text-sky-200/80"
+  }, "Check-in"), /*#__PURE__*/React.createElement("p", {
+    className: "mt-1 text-sm leading-6 text-slate-100/90"
+  }, activeFocus.checkIn)) : null))), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-center gap-3"
@@ -659,6 +1308,21 @@ function App() {
   const totalLessons = useMemo(() => plan.sequence.reduce((sum, week) => sum + (week.lessons?.length || 0), 0), [plan.sequence]);
   const totalAssessments = useMemo(() => plan.assessment.formative.length + plan.assessment.summative.length, [plan.assessment.formative, plan.assessment.summative]);
   const currentTab = TAB_ITEMS.find(t => t.id === tab) || TAB_ITEMS[0];
+  const organisation = plan.organisation || {};
+  const weeklyFocus = organisation.weeklyFocus || [];
+  const routines = organisation.routines || [];
+  const communications = organisation.communications || [];
+  const wellbeingPrompts = organisation.wellbeingPrompts || [];
+  const keyDates = organisation.keyDates || [];
+  const activeWeek = organisation.activeWeek ?? weeklyFocus[0]?.week ?? plan.sequence?.[0]?.week ?? 1;
+  const tasksBoard = plan.tasksBoard || {};
+  const meetingCount = plan.meetings?.length || 0;
+  const totalKeyDates = keyDates.length;
+  const pendingTasks = useMemo(() => Object.entries(plan.tasksBoard || {}).reduce((sum, [status, tasks]) => sum + (status === "Completed" ? 0 : tasks.length), 0), [plan.tasksBoard]);
+  const meetingActions = useMemo(() => (plan.meetings || []).flatMap(meeting => (meeting.actions || []).map(action => ({
+    meeting: meeting.title,
+    action
+  }))), [plan.meetings]);
   useEffect(() => {
     if (tab === "Sequence" && focusWeek != null) {
       requestAnimationFrame(() => {
@@ -680,6 +1344,92 @@ function App() {
       [key]: value
     }
   }));
+  const setActiveWeek = weekValue => {
+    const numericValue = typeof weekValue === "number" ? weekValue : parseInt(weekValue, 10);
+    const nextValue = Number.isNaN(numericValue) ? weekValue : numericValue;
+    setPlan(prev => ({
+      ...prev,
+      organisation: {
+        ...(prev.organisation || {}),
+        activeWeek: nextValue
+      }
+    }));
+  };
+  const updateOrganisationList = (field, value) => {
+    setPlan(prev => ({
+      ...prev,
+      organisation: {
+        ...(prev.organisation || {}),
+        [field]: value
+      }
+    }));
+  };
+  const handleAddTask = (status, task) => {
+    setPlan(prev => {
+      const board = prev.tasksBoard || {};
+      const newTask = {
+        ...task,
+        id: generateId()
+      };
+      return {
+        ...prev,
+        tasksBoard: {
+          ...board,
+          [status]: [...(board[status] || []), newTask]
+        }
+      };
+    });
+  };
+  const handleMoveTask = (fromStatus, toStatus, taskId) => {
+    if (fromStatus === toStatus) return;
+    setPlan(prev => {
+      const board = prev.tasksBoard || {};
+      const fromTasks = board[fromStatus] || [];
+      const taskToMove = fromTasks.find(task => task.id === taskId);
+      if (!taskToMove) {
+        return prev;
+      }
+      return {
+        ...prev,
+        tasksBoard: {
+          ...board,
+          [fromStatus]: fromTasks.filter(task => task.id !== taskId),
+          [toStatus]: [...(board[toStatus] || []), taskToMove]
+        }
+      };
+    });
+  };
+  const handleDeleteTask = (status, taskId) => {
+    setPlan(prev => {
+      const board = prev.tasksBoard || {};
+      if (!board[status]) {
+        return prev;
+      }
+      return {
+        ...prev,
+        tasksBoard: {
+          ...board,
+          [status]: board[status].filter(task => task.id !== taskId)
+        }
+      };
+    });
+  };
+  const handleUpdateMeetingActions = (index, actions) => {
+    setPlan(prev => {
+      const meetings = prev.meetings ? [...prev.meetings] : [];
+      if (!meetings[index]) {
+        return prev;
+      }
+      meetings[index] = {
+        ...meetings[index],
+        actions
+      };
+      return {
+        ...prev,
+        meetings
+      };
+    });
+  };
   const metrics = [{
     label: "Weeks",
     value: plan.sequence.length
@@ -687,11 +1437,20 @@ function App() {
     label: "Lessons",
     value: totalLessons
   }, {
+    label: "Assessments",
+    value: totalAssessments
+  }, {
     label: "Success criteria",
     value: plan.successCriteria.length
   }, {
-    label: "Assessments",
-    value: totalAssessments
+    label: "Key dates",
+    value: totalKeyDates
+  }, {
+    label: "Active tasks",
+    value: pendingTasks
+  }, {
+    label: "Meetings",
+    value: meetingCount
   }];
   return /*#__PURE__*/React.createElement("div", {
     className: "relative min-h-screen overflow-hidden pb-16"
@@ -710,6 +1469,7 @@ function App() {
       ...prev,
       curriculumView: view
     })),
+    onActiveWeekChange: setActiveWeek,
     setPlan: setPlan
   }), /*#__PURE__*/React.createElement(SectionCard, {
     title: "Plan at a glance"
@@ -831,7 +1591,90 @@ function App() {
     className: "text-xs font-semibold uppercase tracking-wide text-slate-300/80"
   }, "Communicating"), /*#__PURE__*/React.createElement("p", {
     className: "mt-1 leading-6"
-  }, plan.capabilities.Communicating.join(" • ")))))), tab === "Sequence" && /*#__PURE__*/React.createElement("div", {
+  }, plan.capabilities.Communicating.join(" • ")))))), tab === "Planner" && /*#__PURE__*/React.createElement("div", {
+    id: "Planner-panel",
+    role: "tabpanel",
+    "aria-labelledby": "tab-Planner",
+    className: "space-y-6"
+  }, /*#__PURE__*/React.createElement(SectionCard, {
+    title: "Weekly focus rhythm",
+    right: weeklyFocus.length ? /*#__PURE__*/React.createElement(Badge, null, "Active week ", activeWeek) : null
+  }, weeklyFocus.length ? /*#__PURE__*/React.createElement("div", {
+    className: "grid gap-4 lg:grid-cols-2"
+  }, weeklyFocus.map(focus => /*#__PURE__*/React.createElement(WeeklyFocusCard, {
+    key: focus.week,
+    focus: focus,
+    isActive: focus.week === activeWeek,
+    onSelectActive: () => setActiveWeek(focus.week)
+  }))) : /*#__PURE__*/React.createElement("p", {
+    className: "rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-300/80"
+  }, "Add weekly focus notes to guide your planning.")), /*#__PURE__*/React.createElement("div", {
+    className: "grid gap-6 xl:grid-cols-[1.2fr,0.8fr]"
+  }, /*#__PURE__*/React.createElement(SectionCard, {
+    title: "Key date timeline",
+    right: totalKeyDates ? /*#__PURE__*/React.createElement(Badge, null, totalKeyDates, totalKeyDates === 1 ? " key date" : " key dates") : null
+  }, /*#__PURE__*/React.createElement(KeyDateTimeline, {
+    items: keyDates
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-6"
+  }, /*#__PURE__*/React.createElement(SectionCard, {
+    title: "Weekly routines",
+    right: routines.length ? /*#__PURE__*/React.createElement(Badge, null, routines.length, routines.length === 1 ? " routine" : " routines") : null
+  }, routines.length ? /*#__PURE__*/React.createElement("div", {
+    className: "space-y-3"
+  }, routines.map((routine, index) => /*#__PURE__*/React.createElement(RoutineCard, {
+    key: `${routine.title}-${index}`,
+    routine: routine
+  }))) : /*#__PURE__*/React.createElement("p", {
+    className: "rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-300/80"
+  }, "No routines recorded yet. Capture your weekly anchors.")), /*#__PURE__*/React.createElement(SectionCard, {
+    title: "Communication pulses"
+  }, /*#__PURE__*/React.createElement(EditableList, {
+    items: communications,
+    onChange: value => updateOrganisationList("communications", value),
+    placeholder: "Add a communication reminder\u2026"
+  })), /*#__PURE__*/React.createElement(SectionCard, {
+    title: "Wellbeing prompts"
+  }, /*#__PURE__*/React.createElement(EditableList, {
+    items: wellbeingPrompts,
+    onChange: value => updateOrganisationList("wellbeingPrompts", value),
+    placeholder: "Add a wellbeing reminder\u2026"
+  }))))), tab === "Tasks" && /*#__PURE__*/React.createElement("div", {
+    id: "Tasks-panel",
+    role: "tabpanel",
+    "aria-labelledby": "tab-Tasks",
+    className: "space-y-6"
+  }, /*#__PURE__*/React.createElement(SectionCard, {
+    title: "Teacher task board",
+    right: /*#__PURE__*/React.createElement(Badge, null, pendingTasks, pendingTasks === 1 ? " active task" : " active tasks")
+  }, /*#__PURE__*/React.createElement(TaskBoard, {
+    board: tasksBoard,
+    onAddTask: handleAddTask,
+    onMoveTask: handleMoveTask,
+    onDeleteTask: handleDeleteTask
+  }))), tab === "Meetings" && /*#__PURE__*/React.createElement("div", {
+    id: "Meetings-panel",
+    role: "tabpanel",
+    "aria-labelledby": "tab-Meetings",
+    className: "grid gap-6 xl:grid-cols-[1.2fr,0.8fr]"
+  }, /*#__PURE__*/React.createElement(SectionCard, {
+    title: "Collaboration log",
+    right: meetingCount ? /*#__PURE__*/React.createElement(Badge, null, meetingCount, meetingCount === 1 ? " meeting" : " meetings") : null
+  }, plan.meetings?.length ? /*#__PURE__*/React.createElement("div", {
+    className: "space-y-4"
+  }, plan.meetings.map((meeting, index) => /*#__PURE__*/React.createElement(MeetingCard, {
+    key: `${meeting.title}-${meeting.date}-${index}`,
+    meeting: meeting,
+    index: index,
+    onUpdateActions: handleUpdateMeetingActions
+  }))) : /*#__PURE__*/React.createElement("p", {
+    className: "rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-300/80"
+  }, "No meetings recorded yet. Capture agendas and actions to keep collaborators aligned.")), /*#__PURE__*/React.createElement(SectionCard, {
+    title: "Action tracker",
+    right: meetingActions.length ? /*#__PURE__*/React.createElement(Badge, null, meetingActions.length, meetingActions.length === 1 ? " action" : " actions") : null
+  }, /*#__PURE__*/React.createElement(ActionSummary, {
+    items: meetingActions
+  }))), tab === "Sequence" && /*#__PURE__*/React.createElement("div", {
     id: "Sequence-panel",
     role: "tabpanel",
     "aria-labelledby": "tab-Sequence",
