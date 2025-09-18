@@ -287,6 +287,54 @@ const DEFAULT_PLAN = {
 };
 
 // ---- Helpers ----
+const TAB_ITEMS = [
+  {
+    id: "Overview",
+    label: "Overview",
+    icon: "🧭",
+    description: "Surface key intentions, pedagogy moves and dispositions at a glance.",
+  },
+  {
+    id: "Sequence",
+    label: "Learning Sequence",
+    icon: "🗂️",
+    description: "Explore each week and lesson in a fluid, scrollable storyboard.",
+  },
+  {
+    id: "Assessment",
+    label: "Assessment",
+    icon: "📝",
+    description: "Review formative checkpoints and summative tasks with evidence notes.",
+  },
+  {
+    id: "Curriculum",
+    label: "Curriculum",
+    icon: "🎓",
+    description: "Toggle between ACARA and South Australian outcomes with resource links.",
+  },
+  {
+    id: "Differentiation",
+    label: "Differentiation",
+    icon: "🛠️",
+    description: "Capture scaffolds, extensions and adjustments ready for planning.",
+  },
+  {
+    id: "Resources",
+    label: "Resources",
+    icon: "📚",
+    description: "Keep teacher-facing notes and inspiration alongside the unit.",
+  },
+];
+
+const TAB_ACCENTS = {
+  Overview: "from-sky-500/80 to-cyan-400/80",
+  Sequence: "from-violet-500/80 to-fuchsia-400/70",
+  Assessment: "from-amber-500/80 to-orange-400/70",
+  Curriculum: "from-emerald-500/80 to-lime-400/70",
+  Differentiation: "from-rose-500/80 to-orange-400/70",
+  Resources: "from-blue-500/80 to-indigo-400/70",
+};
+
 const classNames = (...c) => c.filter(Boolean).join(" ");
 
 function useLocalStorage(key, initial) {
@@ -306,22 +354,37 @@ function useLocalStorage(key, initial) {
   return [state, setState];
 }
 
-// ---- Components ----
+function BackgroundDecor() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden print:hidden">
+      <div className="absolute -left-24 top-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle_at_center,_rgba(56,189,248,0.4),_transparent_70%)] blur-3xl" />
+      <div className="absolute right-[-10%] top-1/3 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_center,_rgba(14,165,233,0.25),_transparent_70%)] blur-3xl" />
+      <div className="absolute bottom-[-15%] left-1/2 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,_rgba(129,140,248,0.3),_transparent_75%)] blur-3xl" />
+    </div>
+  );
+}
+
 function SectionCard({ title, right, children }) {
   return (
-    <div className="bg-white/80 backdrop-blur rounded-2xl shadow p-5 border border-slate-200">
-      <div className="flex items-start justify-between gap-4">
-        <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
-        {right}
+    <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_24px_60px_rgba(2,6,23,0.45)] backdrop-blur-xl">
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-80"
+        aria-hidden="true"
+      />
+      <div className="relative space-y-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <h2 className="text-lg font-semibold text-white">{title}</h2>
+          {right ? <div className="flex-shrink-0">{right}</div> : null}
+        </div>
+        <div className="space-y-4 text-sm text-slate-100/90">{children}</div>
       </div>
-      <div className="mt-3 prose prose-slate max-w-none">{children}</div>
-    </div>
+    </section>
   );
 }
 
 function Badge({ children }) {
   return (
-    <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium border-slate-300 bg-slate-50">
+    <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100/80">
       {children}
     </span>
   );
@@ -329,22 +392,30 @@ function Badge({ children }) {
 
 function PillToggle({ options, value, onChange }) {
   return (
-    <div
-      className="inline-flex rounded-2xl border border-slate-300 bg-slate-100 p-1"
-      role="group"
-    >
+    <div className="inline-flex items-center rounded-full border border-white/10 bg-white/5 p-1 shadow-inner shadow-slate-950/40" role="group">
       {options.map((opt) => (
         <button
           key={opt}
+          type="button"
           className={classNames(
-            "px-3 py-1.5 text-sm rounded-xl",
-            value === opt ? "bg-white shadow font-semibold" : "text-slate-600"
+            "group relative flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300",
+            value === opt ? "text-slate-900" : "text-slate-300 hover:text-white"
           )}
           onClick={() => onChange(opt)}
           aria-pressed={value === opt}
-          aria-label={opt}
         >
-          {opt}
+          {value === opt ? (
+            <span
+              className={classNames(
+                "absolute inset-0 -z-10 rounded-full bg-gradient-to-r shadow-glow",
+                TAB_ACCENTS[opt] || "from-sky-500/80 to-cyan-400/80"
+              )}
+              aria-hidden="true"
+            />
+          ) : (
+            <span className="absolute inset-0 -z-10 rounded-full bg-white/0 transition group-hover:bg-white/10" aria-hidden="true" />
+          )}
+          <span className="relative">{opt}</span>
         </button>
       ))}
     </div>
@@ -359,26 +430,30 @@ function EditableList({ items, onChange, placeholder }) {
     setDraft("");
   };
   return (
-    <div>
-      <ul className="list-disc pl-5 space-y-1">
+    <div className="space-y-3">
+      <ul className="space-y-2">
         {items.map((t, i) => (
-          <li key={i} className="group flex items-start gap-2">
-            <span className="flex-1">{t}</span>
+          <li
+            key={i}
+            className="group relative flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-100/90 transition hover:border-sky-400/40 hover:bg-sky-500/10"
+          >
+            <span className="flex-1 leading-6">{t}</span>
             <button
-              aria-label="Delete"
-              className="opacity-0 group-hover:opacity-100 text-xs text-red-600"
+              type="button"
+              className="rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-300 transition opacity-0 group-hover:opacity-100 hover:bg-white/10 hover:text-rose-200"
               onClick={() => onChange(items.filter((_, k) => k !== i))}
+              aria-label={`Remove ${t}`}
             >
-              remove
+              Remove
             </button>
           </li>
         ))}
       </ul>
-      <div className="mt-3 flex gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row">
         <label className="flex-1">
           <span className="sr-only">Add item</span>
           <input
-            className="w-full rounded-xl border border-slate-300 px-3 py-2"
+            className="w-full rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 focus:border-sky-300/60 focus:outline-none focus:ring-2 focus:ring-sky-500/40"
             placeholder={placeholder}
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
@@ -391,7 +466,8 @@ function EditableList({ items, onChange, placeholder }) {
           />
         </label>
         <button
-          className="rounded-xl px-3 py-2 bg-slate-900 text-white"
+          type="button"
+          className="rounded-2xl bg-gradient-to-r from-sky-500 to-cyan-400 px-4 py-2 text-sm font-semibold text-slate-900 shadow-lg shadow-sky-500/30 transition hover:from-sky-400 hover:to-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-200"
           onClick={handleAdd}
         >
           Add
@@ -403,43 +479,62 @@ function EditableList({ items, onChange, placeholder }) {
 
 function LessonCard({ lesson }) {
   return (
-    <div className="rounded-xl border border-slate-200 p-4">
-      <div className="font-semibold">{lesson.title}</div>
-      {lesson.activities?.length ? (
-        <div className="mt-2">
-          <div className="text-sm font-medium">Activities</div>
-          <ul className="list-disc pl-5 text-sm space-y-1">
-            {lesson.activities.map((a, i) => (
-              <li key={i}>{a}</li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-      {lesson.resources?.length ? (
-        <div className="mt-2">
-          <div className="text-sm font-medium">Resources</div>
-          <ul className="list-disc pl-5 text-sm space-y-1">
-            {lesson.resources.map((r, i) => (
-              <li key={i}>{r}</li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
+    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:border-sky-400/40 hover:bg-sky-500/10">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.25),_transparent_60%)]"
+        aria-hidden="true"
+      />
+      <div className="relative space-y-3">
+        <div className="text-base font-semibold text-white">{lesson.title}</div>
+        {lesson.activities?.length ? (
+          <div className="space-y-1">
+            <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">Activities</div>
+            <ul className="list-disc space-y-1 pl-5 text-sm leading-6 text-slate-100/80">
+              {lesson.activities.map((a, i) => (
+                <li key={i}>{a}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {lesson.resources?.length ? (
+          <div className="space-y-1">
+            <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">Resources</div>
+            <ul className="list-disc space-y-1 pl-5 text-sm leading-6 text-slate-100/80">
+              {lesson.resources.map((r, i) => (
+                <li key={i}>{r}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
 
 function WeekBlock({ block }) {
   return (
-    <div className="rounded-2xl border border-slate-200 p-5 bg-white">
-      <div className="flex items-center justify-between">
-        <h4 className="text-lg font-semibold">Week {block.week}: {block.title}</h4>
-        <Badge>{block.lessons?.length || 0} lessons</Badge>
+    <section
+      id={`week-${block.week}`}
+      className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900/60 via-slate-900/40 to-slate-900/10 p-6 shadow-[0_30px_80px_rgba(15,23,42,0.55)] transition hover:border-sky-400/40 hover:shadow-[0_35px_90px_rgba(56,189,248,0.35)] scroll-mt-28"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.25),_transparent_65%)]"
+        aria-hidden="true"
+      />
+      <div className="relative space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h4 className="text-lg font-semibold text-white">
+            Week {block.week}: {block.title}
+          </h4>
+          <Badge>{block.lessons?.length || 0} lessons</Badge>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          {block.lessons?.map((lesson, index) => (
+            <LessonCard key={index} lesson={lesson} />
+          ))}
+        </div>
       </div>
-      <div className="grid md:grid-cols-2 gap-4 mt-3">
-        {block.lessons?.map((lsn, i) => <LessonCard key={i} lesson={lsn} />)}
-      </div>
-    </div>
+    </section>
   );
 }
 
@@ -469,245 +564,474 @@ function Toolbar({ plan, setPlan }) {
     reader.readAsText(file);
   };
 
+  const baseButton =
+    "group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-sky-400/50 hover:bg-sky-500/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300";
+
   return (
-    <div className="flex flex-wrap gap-2">
-      <button onClick={() => window.print()} className="rounded-xl px-3 py-2 bg-white border border-slate-300">Print</button>
-      <button onClick={exportJSON} className="rounded-xl px-3 py-2 bg-white border border-slate-300">Export JSON</button>
-      <button onClick={() => fileRef.current?.click()} className="rounded-xl px-3 py-2 bg-white border border-slate-300">Import JSON</button>
-      <input ref={fileRef} type="file" accept="application/json" className="hidden" onChange={(e) => e.target.files?.[0] && importJSON(e.target.files[0])} />
+    <div className="flex flex-wrap items-center gap-2">
+      <button type="button" onClick={() => window.print()} className={baseButton}>
+        <span className="relative z-10 flex items-center gap-2">
+          <span>🖨️</span>
+          <span>Print</span>
+        </span>
+        <span className="absolute inset-0 -z-10 opacity-0 transition group-hover:opacity-100 bg-gradient-to-r from-white/10 to-transparent" aria-hidden="true" />
+      </button>
+      <button type="button" onClick={exportJSON} className={baseButton}>
+        <span className="relative z-10 flex items-center gap-2">
+          <span>💾</span>
+          <span>Export JSON</span>
+        </span>
+        <span className="absolute inset-0 -z-10 opacity-0 transition group-hover:opacity-100 bg-gradient-to-r from-sky-500/20 to-transparent" aria-hidden="true" />
+      </button>
+      <button type="button" onClick={() => fileRef.current?.click()} className={baseButton}>
+        <span className="relative z-10 flex items-center gap-2">
+          <span>📂</span>
+          <span>Import</span>
+        </span>
+        <span className="absolute inset-0 -z-10 opacity-0 transition group-hover:opacity-100 bg-gradient-to-r from-cyan-500/20 to-transparent" aria-hidden="true" />
+      </button>
+      <input
+        ref={fileRef}
+        type="file"
+        accept="application/json"
+        className="hidden"
+        onChange={(e) => e.target.files?.[0] && importJSON(e.target.files[0])}
+      />
+    </div>
+  );
+}
+
+function MetaField({ label, value, editing, onChange, multiline = false, type = "text" }) {
+  const inputClass =
+    "w-full rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 focus:border-sky-200/60 focus:outline-none focus:ring-2 focus:ring-sky-300/60";
+  return (
+    <div className="space-y-1">
+      <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">{label}</div>
+      {editing ? (
+        multiline ? (
+          <textarea className={inputClass} rows={3} value={value} onChange={(e) => onChange(e.target.value)} />
+        ) : (
+          <input className={inputClass} type={type} value={value} onChange={(e) => onChange(e.target.value)} />
+        )
+      ) : (
+        <p className="text-sm font-medium text-white/90">{value}</p>
+      )}
+    </div>
+  );
+}
+
+function PlanHero({ plan, onMetaChange, editMeta, setEditMeta, onCurriculumChange, setPlan }) {
+  return (
+    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-sky-500/20 via-slate-900/60 to-slate-950/80 p-7 shadow-[0_30px_80px_rgba(2,6,23,0.6)] backdrop-blur-xl">
+      <div className="pointer-events-none absolute inset-0 opacity-70 mix-blend-screen" aria-hidden="true">
+        <div className="absolute left-0 top-0 h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,_rgba(125,211,252,0.45),_transparent_70%)] blur-2xl" />
+        <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_center,_rgba(14,165,233,0.35),_transparent_70%)] blur-2xl" />
+      </div>
+      <div className="relative space-y-6">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="flex-1 space-y-3">
+            {editMeta ? (
+              <input
+                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-2xl font-semibold text-white placeholder:text-slate-300 focus:border-sky-200/60 focus:outline-none focus:ring-2 focus:ring-sky-300/60"
+                value={plan.meta.title}
+                onChange={(e) => onMetaChange("title", e.target.value)}
+              />
+            ) : (
+              <h1 className="text-3xl font-semibold text-white sm:text-4xl">{plan.meta.title}</h1>
+            )}
+            {editMeta ? (
+              <textarea
+                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-300 focus:border-sky-200/60 focus:outline-none focus:ring-2 focus:ring-sky-300/60"
+                rows={3}
+                value={plan.meta.subtitle}
+                onChange={(e) => onMetaChange("subtitle", e.target.value)}
+              />
+            ) : (
+              <p className="max-w-xl text-sm text-slate-100/80 sm:text-base">{plan.meta.subtitle}</p>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={() => setEditMeta((s) => !s)}
+            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-sky-400/50 hover:bg-sky-500/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+          >
+            <span className="relative z-10 flex items-center gap-2">
+              <span>{editMeta ? "✅" : "✏️"}</span>
+              <span>{editMeta ? "Done" : "Quick edit"}</span>
+            </span>
+            <span className="absolute inset-0 -z-10 opacity-0 transition group-hover:opacity-100 bg-gradient-to-r from-white/10 to-transparent" aria-hidden="true" />
+          </button>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <MetaField
+            label="Duration"
+            value={plan.meta.duration}
+            editing={editMeta}
+            onChange={(val) => onMetaChange("duration", val)}
+          />
+          <MetaField
+            label="Author"
+            value={plan.meta.author}
+            editing={editMeta}
+            onChange={(val) => onMetaChange("author", val)}
+          />
+          <MetaField
+            label="School"
+            value={plan.meta.school}
+            editing={editMeta}
+            onChange={(val) => onMetaChange("school", val)}
+          />
+          <MetaField
+            label="Last updated"
+            value={plan.meta.lastUpdated}
+            editing={editMeta}
+            onChange={(val) => onMetaChange("lastUpdated", val)}
+            type="date"
+          />
+        </div>
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-300/70">Curriculum view</span>
+            <PillToggle options={["SA", "ACARA"]} value={plan.curriculumView} onChange={onCurriculumChange} />
+          </div>
+          <Toolbar plan={plan} setPlan={setPlan} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TabBar({ tabs, current, onChange }) {
+  return (
+    <div className="rounded-full border border-white/10 bg-white/5 p-2 shadow-[0_20px_60px_rgba(2,6,23,0.45)] backdrop-blur-xl">
+      <div className="flex flex-row flex-wrap items-center gap-2 overflow-x-auto no-scrollbar" role="tablist">
+        {tabs.map((tab, index) => {
+          const active = current === tab.id;
+          return (
+            <button
+              key={tab.id}
+              id={`tab-${tab.id}`}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              aria-controls={active ? `${tab.id}-panel` : undefined}
+              onClick={() => onChange(tab.id)}
+              onKeyDown={(e) => {
+                if (e.key === "ArrowRight") {
+                  e.preventDefault();
+                  const next = (index + 1) % tabs.length;
+                  onChange(tabs[next].id);
+                } else if (e.key === "ArrowLeft") {
+                  e.preventDefault();
+                  const prev = (index - 1 + tabs.length) % tabs.length;
+                  onChange(tabs[prev].id);
+                }
+              }}
+              className={classNames(
+                "group relative flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300",
+                active ? "text-slate-900" : "text-slate-300 hover:text-white"
+              )}
+            >
+              {active ? (
+                <span
+                  className={classNames(
+                    "absolute inset-0 -z-10 rounded-full bg-gradient-to-r",
+                    TAB_ACCENTS[tab.id] || "from-sky-500/80 to-cyan-400/80",
+                    "shadow-[0_12px_40px_rgba(56,189,248,0.35)]"
+                  )}
+                  aria-hidden="true"
+                />
+              ) : (
+                <span className="absolute inset-0 -z-10 rounded-full bg-white/0 transition group-hover:bg-white/10" aria-hidden="true" />
+              )}
+              <span className="text-lg">{tab.icon}</span>
+              <span className="relative">{tab.label}</span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
 export default function App() {
   const [plan, setPlan] = useLocalStorage("yr9-civics-plan", DEFAULT_PLAN);
-  const [tab, setTab] = useState("Overview");
+  const [tab, setTab] = useState(TAB_ITEMS[0].id);
   const [editMeta, setEditMeta] = useState(false);
+  const [focusWeek, setFocusWeek] = useState(null);
 
-  const tabs = ["Overview", "Sequence", "Assessment", "Curriculum", "Differentiation", "Resources"];
+  const totalLessons = useMemo(
+    () => plan.sequence.reduce((sum, week) => sum + (week.lessons?.length || 0), 0),
+    [plan.sequence]
+  );
+  const totalAssessments = useMemo(
+    () => plan.assessment.formative.length + plan.assessment.summative.length,
+    [plan.assessment.formative, plan.assessment.summative]
+  );
 
-  const onMetaChange = (key, value) => setPlan({ ...plan, meta: { ...plan.meta, [key]: value } });
+  const currentTab = TAB_ITEMS.find((t) => t.id === tab) || TAB_ITEMS[0];
+
+  useEffect(() => {
+    if (tab === "Sequence" && focusWeek != null) {
+      requestAnimationFrame(() => {
+        const el = document.getElementById(`week-${focusWeek}`);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        setFocusWeek(null);
+      });
+    }
+  }, [tab, focusWeek]);
+
+  const onMetaChange = (key, value) =>
+    setPlan((prev) => ({ ...prev, meta: { ...prev.meta, [key]: value } }));
+
+  const metrics = [
+    { label: "Weeks", value: plan.sequence.length },
+    { label: "Lessons", value: totalLessons },
+    { label: "Success criteria", value: plan.successCriteria.length },
+    { label: "Assessments", value: totalAssessments },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-100 to-slate-200 text-slate-900">
-      <header className="sticky top-0 z-10 border-b border-slate-200 backdrop-blur bg-white/70">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex flex-wrap items-center gap-4 justify-between">
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">{plan.meta.title}</h1>
-            <p className="text-sm text-slate-600">{plan.meta.subtitle}</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <Toolbar plan={plan} setPlan={setPlan} />
-          </div>
-        </div>
-      </header>
-
-      <main className="max-w-6xl mx-auto p-4 space-y-6">
-        <SectionCard
-          title="Unit Details"
-          right={
-            <div className="flex items-center gap-3">
-              <PillToggle
-                options={["SA", "ACARA"]}
-                value={plan.curriculumView}
-                onChange={(v) => setPlan({ ...plan, curriculumView: v })}
-              />
-              <button
-                className="rounded-xl px-3 py-1.5 bg-slate-900 text-white"
-                onClick={() => setEditMeta((s) => !s)}
-              >
-                {editMeta ? "Done" : "Quick Edit"}
-              </button>
-            </div>
-          }
-        >
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              {editMeta ? (
-                <div className="space-y-3">
-                  <div>
-                    <label className="text-xs uppercase text-slate-500">Title</label>
-                    <input className="w-full rounded-xl border px-3 py-2" value={plan.meta.title} onChange={(e) => onMetaChange("title", e.target.value)} />
-                  </div>
-                  <div>
-                    <label className="text-xs uppercase text-slate-500">Inquiry / Subtitle</label>
-                    <textarea className="w-full rounded-xl border px-3 py-2" rows={3} value={plan.meta.subtitle} onChange={(e) => onMetaChange("subtitle", e.target.value)} />
-                  </div>
-                  <div className="grid grid-cols-3 gap-3">
-                    <div>
-                      <label className="text-xs uppercase text-slate-500">Duration</label>
-                      <input className="w-full rounded-xl border px-3 py-2" value={plan.meta.duration} onChange={(e) => onMetaChange("duration", e.target.value)} />
-                    </div>
-                    <div>
-                      <label className="text-xs uppercase text-slate-500">Author</label>
-                      <input className="w-full rounded-xl border px-3 py-2" value={plan.meta.author} onChange={(e) => onMetaChange("author", e.target.value)} />
-                    </div>
-                    <div>
-                      <label className="text-xs uppercase text-slate-500">Updated</label>
-                      <input className="w-full rounded-xl border px-3 py-2" value={plan.meta.lastUpdated} onChange={(e) => onMetaChange("lastUpdated", e.target.value)} />
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 gap-3 text-sm">
-                  <div><span className="font-medium">Duration:</span> {plan.meta.duration}</div>
-                  <div><span className="font-medium">Author:</span> {plan.meta.author}</div>
-                  <div><span className="font-medium">School:</span> {plan.meta.school}</div>
-                  <div><span className="font-medium">Last updated:</span> {plan.meta.lastUpdated}</div>
-                </div>
-              )}
-            </div>
-            <div>
-              <div className="text-sm"><span className="font-medium">Dispositions:</span> {plan.dispositions.map(d => d.name).join(", ")}</div>
-              <div className="mt-2 text-sm"><span className="font-medium">Capabilities:</span> Critical inquiry · Ethical understanding · Intercultural understanding</div>
-              <div className="mt-3">
-                <div className="text-sm font-medium">Learning Intentions</div>
-                <ul className="list-disc pl-5 text-sm space-y-1">
-                  {plan.learningIntentions.map((li, i) => <li key={i}>{li}</li>)}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </SectionCard>
-
-        <nav className="flex flex-wrap gap-2">
-          {tabs.map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={classNames(
-                "px-4 py-2 rounded-xl border",
-                tab === t ? "bg-slate-900 text-white border-slate-900" : "bg-white border-slate-300"
-              )}
-            >
-              {t}
-            </button>
-          ))}
-        </nav>
-
-        {tab === "Overview" && (
-          <div className="grid lg:grid-cols-2 gap-6">
-            <SectionCard title="Success Criteria">
-              <EditableList
-                items={plan.successCriteria}
-                onChange={(v) => setPlan({ ...plan, successCriteria: v })}
-                placeholder="Add a success criterion…"
-              />
-            </SectionCard>
-            <SectionCard title="Unit Pedagogy (Visible Learning)">
-              <EditableList
-                items={plan.pedagogy}
-                onChange={(v) => setPlan({ ...plan, pedagogy: v })}
-                placeholder="Add a pedagogy note…"
-              />
-            </SectionCard>
-            <SectionCard title="Dispositions (SA)">
-              <ul className="list-disc pl-5 space-y-2">
-                {plan.dispositions.map((d, i) => (
-                  <li key={i}><span className="font-medium">{d.name}:</span> {d.notes}</li>
-                ))}
-              </ul>
-            </SectionCard>
-            <SectionCard title="Capabilities">
-              <ul className="list-disc pl-5 space-y-2">
-                <li><span className="font-medium">Critical inquiry:</span> {plan.capabilities.CriticalInquiry.join("; ")}</li>
-                <li><span className="font-medium">Analysis & evaluation:</span> {plan.capabilities.AnalysisEvaluation.join("; ")}</li>
-                <li><span className="font-medium">Civic participation:</span> {plan.capabilities.CivicParticipation.join("; ")}</li>
-                <li><span className="font-medium">Communicating:</span> {plan.capabilities.Communicating.join("; ")}</li>
-              </ul>
-            </SectionCard>
-          </div>
-        )}
-
-        {tab === "Sequence" && (
-          <div className="space-y-4">
-            {plan.sequence.map((w, i) => <WeekBlock key={i} block={w} />)}
-          </div>
-        )}
-
-        {tab === "Assessment" && (
-          <div className="grid lg:grid-cols-2 gap-6">
-            <SectionCard title="Formative Assessment">
-              <ul className="list-disc pl-5 space-y-2">
-                {plan.assessment.formative.map((a, i) => (
-                  <li key={i}>
-                    <div className="font-medium">{a.name}</div>
-                    <div className="text-sm">{a.description}</div>
-                    <div className="text-xs text-slate-500">Evidence: {a.evidence}</div>
-                  </li>
-                ))}
-              </ul>
-            </SectionCard>
-            <SectionCard title="Summative Assessment">
-              <ul className="list-disc pl-5 space-y-2">
-                {plan.assessment.summative.map((a, i) => (
-                  <li key={i}>
-                    <div className="font-medium">{a.name}</div>
-                    <div className="text-sm">{a.description}</div>
-                    {a.criteria?.length ? (
-                      <div className="text-xs text-slate-500">Criteria: {a.criteria.join(" · ")}</div>
-                    ) : null}
-                    <div className="text-xs text-slate-500">Evidence: {a.evidence}</div>
-                  </li>
-                ))}
-              </ul>
-            </SectionCard>
-          </div>
-        )}
-
-        {tab === "Curriculum" && (
-          <div className="grid md:grid-cols-2 gap-6">
-            <SectionCard title={plan.curriculumView === "SA" ? "SA Curriculum Links" : "ACARA Links"}>
-              <ul className="list-disc pl-5 space-y-2">
-                {(plan.curriculumView === "SA" ? plan.curriculumLinks.SA : plan.curriculumLinks.ACARA).map((c) => (
-                  <li key={c.code}>
-                    <span className="font-medium">{c.code}:</span> {c.text}
-                  </li>
-                ))}
-              </ul>
-            </SectionCard>
-            <SectionCard title="Learning Resources">
-              <EditableList
-                items={plan.resources}
-                onChange={(v) => setPlan({ ...plan, resources: v })}
-                placeholder="Add a resource or link description…"
-              />
-            </SectionCard>
-          </div>
-        )}
-
-        {tab === "Differentiation" && (
-          <SectionCard title="Adjustments & Differentiation">
-            <EditableList
-              items={plan.differentiation}
-              onChange={(v) => setPlan({ ...plan, differentiation: v })}
-              placeholder="Add an adjustment idea…"
+    <div className="relative min-h-screen overflow-hidden pb-16">
+      <BackgroundDecor />
+      <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[320px,1fr] xl:grid-cols-[360px,1fr]">
+          <aside className="space-y-6">
+            <PlanHero
+              plan={plan}
+              onMetaChange={onMetaChange}
+              editMeta={editMeta}
+              setEditMeta={setEditMeta}
+              onCurriculumChange={(view) => setPlan((prev) => ({ ...prev, curriculumView: view }))}
+              setPlan={setPlan}
             />
-          </SectionCard>
-        )}
+            <SectionCard title="Plan at a glance">
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                {metrics.map((metric) => (
+                  <div
+                    key={metric.label}
+                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 shadow-inner shadow-slate-950/30"
+                  >
+                    <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">{metric.label}</div>
+                    <div className="mt-1 text-2xl font-semibold text-white">{metric.value}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="pt-4">
+                <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">Dispositions</div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {plan.dispositions.map((d) => (
+                    <Badge key={d.name}>{d.name}</Badge>
+                  ))}
+                </div>
+              </div>
+            </SectionCard>
+            <SectionCard title="Quick sequence access">
+              <p className="text-sm text-slate-300/90">
+                Jump to a week to edit or review lessons. The Sequence tab will open and scroll to your selection.
+              </p>
+              <div className="mt-4 grid gap-2">
+                {plan.sequence.map((week) => (
+                  <button
+                    key={week.week}
+                    type="button"
+                    onClick={() => {
+                      setTab("Sequence");
+                      setFocusWeek(week.week);
+                    }}
+                    className="group flex w-full items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-left transition hover:border-sky-400/50 hover:bg-sky-500/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+                  >
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">Week {week.week}</div>
+                      <div className="text-sm font-semibold text-white group-hover:text-sky-100">{week.title}</div>
+                    </div>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-slate-300/80 group-hover:text-sky-100">
+                      {week.lessons?.length || 0} lessons
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </SectionCard>
+          </aside>
+          <section className="space-y-6">
+            <div className="space-y-3">
+              <TabBar tabs={TAB_ITEMS} current={tab} onChange={setTab} />
+              <p className="text-sm text-slate-300/90">{currentTab.description}</p>
+            </div>
 
-        {tab === "Resources" && (
-          <SectionCard title="Teacher Notes">
-            <p className="text-sm">Use the Export button to save this plan as JSON. Import later to continue editing. Print generates a clean copy for PDP evidence or sharing.</p>
-            <ul className="list-disc pl-5 text-sm space-y-1 mt-2">
-              <li>Action project ideas: student voice survey, fairness policy explainer, media literacy mini-campaign, peer court role-play.</li>
-              <li>Embed digital tools students enjoy (Canva, Google Slides, Minecraft builds for civic spaces).</li>
-              <li>Build discussion norms (respect, evidence, turn-taking) to cultivate principled discourse.</li>
-            </ul>
-          </SectionCard>
-        )}
-      </main>
+            {tab === "Overview" && (
+              <div id="Overview-panel" role="tabpanel" aria-labelledby="tab-Overview" className="grid gap-6 xl:grid-cols-2">
+                <SectionCard title="Learning intentions">
+                  <EditableList
+                    items={plan.learningIntentions}
+                    onChange={(v) => setPlan((prev) => ({ ...prev, learningIntentions: v }))}
+                    placeholder="Add a learning intention…"
+                  />
+                </SectionCard>
+                <SectionCard title="Success criteria">
+                  <EditableList
+                    items={plan.successCriteria}
+                    onChange={(v) => setPlan((prev) => ({ ...prev, successCriteria: v }))}
+                    placeholder="Add a success criterion…"
+                  />
+                </SectionCard>
+                <SectionCard title="Pedagogical moves">
+                  <EditableList
+                    items={plan.pedagogy}
+                    onChange={(v) => setPlan((prev) => ({ ...prev, pedagogy: v }))}
+                    placeholder="Add a pedagogy note…"
+                  />
+                </SectionCard>
+                <SectionCard title="Dispositions (SA)">
+                  <div className="grid gap-3 text-sm text-slate-100/90">
+                    {plan.dispositions.map((d, i) => (
+                      <div key={i} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                        <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">{d.name}</div>
+                        <p className="mt-1 leading-6">{d.notes}</p>
+                      </div>
+                    ))}
+                  </div>
+                </SectionCard>
+                <SectionCard title="Capabilities focus">
+                  <div className="grid gap-3 text-sm text-slate-100/90">
+                    <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                      <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">Critical inquiry</div>
+                      <p className="mt-1 leading-6">{plan.capabilities.CriticalInquiry.join(" • ")}</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                      <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">Analysis & evaluation</div>
+                      <p className="mt-1 leading-6">{plan.capabilities.AnalysisEvaluation.join(" • ")}</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                      <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">Civic participation</div>
+                      <p className="mt-1 leading-6">{plan.capabilities.CivicParticipation.join(" • ")}</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                      <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">Communicating</div>
+                      <p className="mt-1 leading-6">{plan.capabilities.Communicating.join(" • ")}</p>
+                    </div>
+                  </div>
+                </SectionCard>
+              </div>
+            )}
 
-      <footer className="max-w-6xl mx-auto px-4 py-8 text-xs text-slate-500">
-        <div>© {new Date().getFullYear()} Unit plan scaffold • Aligned to ACARA & South Australian Curriculum (Year 9 Civics & Citizenship).</div>
+            {tab === "Sequence" && (
+              <div id="Sequence-panel" role="tabpanel" aria-labelledby="tab-Sequence" className="space-y-5">
+                {plan.sequence.map((block, i) => (
+                  <WeekBlock key={i} block={block} />
+                ))}
+              </div>
+            )}
+
+            {tab === "Assessment" && (
+              <div id="Assessment-panel" role="tabpanel" aria-labelledby="tab-Assessment" className="grid gap-6 xl:grid-cols-2">
+                <SectionCard title="Formative assessment">
+                  <div className="space-y-3 text-sm text-slate-100/90">
+                    {plan.assessment.formative.map((a, i) => (
+                      <div key={i} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                        <div className="text-base font-semibold text-white">{a.name}</div>
+                        <p className="mt-1 leading-6 text-slate-100/80">{a.description}</p>
+                        <div className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-300/80">
+                          Evidence: {a.evidence}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </SectionCard>
+                <SectionCard title="Summative assessment">
+                  <div className="space-y-3 text-sm text-slate-100/90">
+                    {plan.assessment.summative.map((a, i) => (
+                      <div key={i} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                        <div className="text-base font-semibold text-white">{a.name}</div>
+                        <p className="mt-1 leading-6 text-slate-100/80">{a.description}</p>
+                        {a.criteria?.length ? (
+                          <div className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-300/80">
+                            Criteria: {a.criteria.join(" • ")}
+                          </div>
+                        ) : null}
+                        <div className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-300/80">
+                          Evidence: {a.evidence}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </SectionCard>
+              </div>
+            )}
+
+            {tab === "Curriculum" && (
+              <div id="Curriculum-panel" role="tabpanel" aria-labelledby="tab-Curriculum" className="grid gap-6 xl:grid-cols-2">
+                <SectionCard title={plan.curriculumView === "SA" ? "SA curriculum links" : "ACARA links"}>
+                  <div className="space-y-3 text-sm text-slate-100/90">
+                    {(plan.curriculumView === "SA" ? plan.curriculumLinks.SA : plan.curriculumLinks.ACARA).map((c) => (
+                      <div key={c.code} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                        <div className="text-xs font-semibold uppercase tracking-wide text-slate-300/80">{c.code}</div>
+                        <p className="mt-1 leading-6">{c.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </SectionCard>
+                <SectionCard title="Learning resources">
+                  <EditableList
+                    items={plan.resources}
+                    onChange={(v) => setPlan((prev) => ({ ...prev, resources: v }))}
+                    placeholder="Add a resource or link description…"
+                  />
+                </SectionCard>
+              </div>
+            )}
+
+            {tab === "Differentiation" && (
+              <div id="Differentiation-panel" role="tabpanel" aria-labelledby="tab-Differentiation">
+                <SectionCard title="Adjustments & differentiation">
+                  <EditableList
+                    items={plan.differentiation}
+                    onChange={(v) => setPlan((prev) => ({ ...prev, differentiation: v }))}
+                    placeholder="Add an adjustment idea…"
+                  />
+                </SectionCard>
+              </div>
+            )}
+
+            {tab === "Resources" && (
+              <div id="Resources-panel" role="tabpanel" aria-labelledby="tab-Resources" className="space-y-6">
+                <SectionCard title="Teacher notes">
+                  <p className="text-sm leading-6 text-slate-100/80">
+                    Use the export action to save a JSON snapshot of the plan, re-import when you are ready to iterate, and print
+                    for PDP evidence or team collaboration.
+                  </p>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-100/80">
+                    <li>
+                      Action project ideas: student voice survey, fairness policy explainer, media literacy mini-campaign, peer
+                      court role-play.
+                    </li>
+                    <li>
+                      Integrate digital tools that students enjoy (Canva, collaborative slides, Minecraft builds of democratic
+                      spaces).
+                    </li>
+                    <li>
+                      Revisit norms for principled dialogue—respect, evidence and turn-taking—to nurture democratic dispositions.
+                    </li>
+                  </ul>
+                </SectionCard>
+              </div>
+            )}
+          </section>
+        </div>
+      </div>
+      <footer className="relative mx-auto mt-12 w-full max-w-7xl px-4 pb-8 text-xs text-slate-400 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-white/10 bg-white/5 px-6 py-4 text-center backdrop-blur-xl">
+          © {new Date().getFullYear()} Unit plan scaffold • Aligned to ACARA & South Australian Curriculum (Year 9 Civics & Citizenship).
+        </div>
       </footer>
-
       <style>{`
         @media print {
-          header, nav, .no-print { display: none !important; }
-          main { padding: 0 !important; }
-          .prose { max-width: none; }
-          body { background: white; }
+          body {
+            background: white !important;
+            color: black !important;
+          }
         }
       `}</style>
     </div>
