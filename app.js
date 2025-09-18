@@ -651,7 +651,7 @@ function TabBar({
     }, tab.label));
   })));
 }
-export default function App() {
+function App() {
   const [plan, setPlan] = useLocalStorage("yr9-civics-plan", DEFAULT_PLAN);
   const [tab, setTab] = useState(TAB_ITEMS[0].id);
   const [editMeta, setEditMeta] = useState(false);
